@@ -1,5 +1,8 @@
 package fr.babystaff.babymodel.world;
 
+import fr.babystaff.babymodel.hologram.events.HologramCreateEvent;
+import fr.babystaff.babymodel.world.events.WorldCreateEvent;
+import fr.babystaff.babymodel.world.events.WorldDeleteEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
@@ -18,6 +21,7 @@ public class World {
         this.generator = generator;
 
         createWorld(worldName, worldType, generator);
+
     }
 
     public String getWorldName() {
@@ -30,6 +34,10 @@ public class World {
 
     public ChunkGenerator getGenerator() {
         return generator;
+    }
+
+    public org.bukkit.World getWorld() {
+        return Bukkit.getWorld(worldName);
     }
 
     public World createWorld(String worldName, WorldType worldType, ChunkGenerator generator) {
@@ -46,6 +54,8 @@ public class World {
             World world = (World) Bukkit.createWorld(creator);
 
             System.out.println("Le monde " + worldName + " a été créé avec succès.");
+            WorldCreateEvent event = new WorldCreateEvent(Bukkit.getWorld(worldName));
+            Bukkit.getPluginManager().callEvent(event);
             return world;
         } catch (Exception e) {
             System.err.println("Erreur lors de la création du monde : " + e.getMessage());
@@ -74,6 +84,8 @@ public class World {
                 if (worldFolder.exists()) {
                     deleteFolder(worldFolder);
                     System.out.println("Le dossier du monde " + worldName + " a été supprimé.");
+                    WorldDeleteEvent event = new WorldDeleteEvent(Bukkit.getWorld(worldName));
+                    Bukkit.getPluginManager().callEvent(event);
                 }
             }
 
