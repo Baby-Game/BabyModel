@@ -101,19 +101,6 @@
             <version>20210307</version>
         </dependency>
         <dependency>
-            <groupId>net.luckperms</groupId>
-            <artifactId>api</artifactId>
-            <version>5.4</version> <!-- Check for the latest version -->
-            <scope>compile</scope> <!-- Changed from 'provided' to 'compile' -->
-        </dependency>
-
-        <dependency>
-            <groupId>com.comphenix.protocol</groupId>
-            <artifactId>ProtocolLib</artifactId>
-            <version>5.1.0</version> <!-- Vérifiez la dernière version disponible -->
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>com.mojang</groupId>
             <artifactId>authlib</artifactId>
             <version>1.5.22</version>
