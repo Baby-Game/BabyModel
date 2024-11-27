@@ -2,6 +2,7 @@ package fr.babystaff.babymodel;
 
 import fr.babystaff.babymodel.actionBar.ActionBarManager;
 import fr.babystaff.babymodel.dataBase.DataBaseManager;
+import fr.babystaff.babymodel.discord.bot.DiscordBotManager;
 import fr.babystaff.babymodel.hologram.HologramManager;
 import fr.babystaff.babymodel.world.World;
 import fr.babystaff.babymodel.world.WorldManager;
@@ -11,6 +12,7 @@ public final class BabyModel extends JavaPlugin {
 
     private DataBaseManager dataBaseManager;
 
+    private DiscordBotManager discordBotManager;
     private WorldManager worldManager;
     private ActionBarManager actionBarManager;
     private HologramManager hologramManager;
@@ -25,6 +27,8 @@ public final class BabyModel extends JavaPlugin {
         this.actionBarManager = new ActionBarManager();
 
         this.hologramManager = new HologramManager();
+
+        this.discordBotManager = new DiscordBotManager();
 
     }
 
@@ -47,5 +51,9 @@ public final class BabyModel extends JavaPlugin {
 
     public WorldManager getWorldManager() {
         return worldManager;
+    }
+
+    public DiscordBotManager getDiscordBotManager() {
+        return discordBotManager;
     }
 }
