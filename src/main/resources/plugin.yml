@@ -1,0 +1,6 @@
+name: BabyModel
+version: 1.0
+main: fr.babystaff.babymodel.BabyModel
+softdepend:
+  - LuckPerms
+  - ProtocolLib

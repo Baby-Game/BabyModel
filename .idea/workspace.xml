@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="82007baa-ef45-4fe3-b068-2b4708e7914d" name="Changes" comment="First">
+      <change beforePath="$PROJECT_DIR$/../BabyBungee" beforeDir="false" afterPath="$PROJECT_DIR$/../BabyBungee" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BabyBungeeT" beforeDir="false" afterPath="$PROJECT_DIR$/../BabyBungeeT" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BabyFFA" beforeDir="false" afterPath="$PROJECT_DIR$/../BabyFFA" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BabyLobby" beforeDir="false" afterPath="$PROJECT_DIR$/../BabyLobby" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BabyMain" beforeDir="false" afterPath="$PROJECT_DIR$/../BabyMain" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Main-Docs" beforeDir="false" afterPath="$PROJECT_DIR$/../Main-Docs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {}
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Louis292/BabyModel",
+    "accountId": "9f7a8dd8-0fdf-4991-808c-41d401cd6b87"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="2pQalk7i9bn7d5g3zEH2qnP1wsC" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="BabyModel package" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="package" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="C:\Users\cargo\Documents\GitHub\BabyModel" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="82007baa-ef45-4fe3-b068-2b4708e7914d" name="Changes" comment="" />
+      <created>1732700905475</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732700905475</updated>
+    </task>
+    <task id="LOCAL-00001" summary="First">
+      <option name="closed" value="true" />
+      <created>1732701023503</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1732701023503</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First" />
+    <option name="LAST_COMMIT_MESSAGE" value="First" />
+  </component>
+</project>

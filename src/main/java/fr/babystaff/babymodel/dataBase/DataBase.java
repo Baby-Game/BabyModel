@@ -1,0 +1,105 @@
+package fr.babystaff.babymodel.dataBase;
+
+import fr.babystaff.babymodel.dataBase.events.DataBaseCloseEvent;
+import fr.babystaff.babymodel.dataBase.events.DataBaseConnectEvent;
+import org.bukkit.Bukkit;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DataBase {
+    private String driver;
+    private String host;
+    private String port;
+    private String user;
+    private String pass;
+    private String name;
+    private Connection connection;
+
+    public DataBase(String driver, String host, String port, String user, String pass, String name) {
+        this.driver = driver;
+        this.host = host;
+        this.port = port;
+        this.user = user;
+        this.pass = pass;
+        this.name = name;
+    }
+
+    public String toURL() {
+        final StringBuilder sb = new StringBuilder();
+
+        sb.append("jdbc:mysql://")
+                .append(getHost())
+                .append(":")
+                .append(getPort())
+                .append("/")
+                .append(getName())
+                .append("?user=")
+                .append(getUser())
+                .append("&password=")
+                .append(getPass());
+
+        return sb.toString();
+    }
+
+    public void connect() {
+        try {
+            Class.forName(getDriver());
+            this.connection = DriverManager.getConnection(toURL());
+            DataBaseConnectEvent event = new DataBaseConnectEvent(getName());
+            Bukkit.getPluginManager().callEvent(event);
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void close() {
+        try {
+            if (this.connection != null) {
+                if (!this.connection.isClosed()) {
+                    this.connection.close();
+                    DataBaseCloseEvent event = new DataBaseCloseEvent(getName());
+                    Bukkit.getPluginManager().callEvent(event);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Connection getConnection() throws SQLException {
+        if (this.connection != null) {
+            if (!this.connection.isClosed()) {
+                return this.connection;
+            }
+        }
+        connect();
+        return this.connection;
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public String getPort() {
+        return port;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDriver() {
+        return driver;
+    }
+}
