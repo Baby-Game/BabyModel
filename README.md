@@ -4,23 +4,39 @@ BabyModel est une API légère et puissante conçue pour simplifier le développ
 
 Cette API offre plusieurs gestionnaires qui vous permettent de gérer des fonctionnalités courantes dans vos plugins Minecraft, notamment la gestion des bases de données, l'affichage de l'ActionBar et la manipulation d'hologrammes. BabyModel est conçu pour être utilisé comme modèle pour la création de plugins Minecraft de manière rapide et efficace.
 
+---
+
+### Maven 🔧
+
+Ajoutez la dépendance suivante dans votre fichier `pom.xml` :
+
+[![Maven Badge](https://img.shields.io/maven-central/v/fr.babystaff/babymodel.svg)](https://maven-badges.herokuapp.com/maven-central/fr.babystaff/babymodel)
+
+```xml
+<dependency>
+    <groupId>fr.babystaff</groupId>
+    <artifactId>babymodel</artifactId>
+    <version>1.0.0</version>
+    <scope>compile</scope>
+</dependency>
+```
+
+### Gradle ⚙️
+
+Ajoutez cette ligne dans votre fichier `build.gradle` :
+
+[![Gradle Badge](https://img.shields.io/badge/Gradle-1.0.0-blue.svg)](https://gradle.org/)
+
+```gradle
+dependencies {
+    implementation 'fr.babystaff:babymodel:1.0.0'
+}
+```
 
 ---
 
-## Comment modifier BabyModel ⚙️
 
-BabyModel peut être intégré dans n'importe quel plugin Minecraft en tant que bibliothèque principale ou en tant que modèle pour des projets plus complexes. Il suffit de copier les classes principales dans votre projet, puis de commencer à utiliser les gestionnaires pour faciliter le développement de vos plugins.
-
-**Étapes d'intégration :**
-
-1. Clonez ou téléchargez ce dépôt.
-2. Ajoutez les classes de `BabyModel` à votre projet.
-3. Utilisez les gestionnaires dans vos plugins comme montré dans les exemples ci-dessus.
-4. Personnalisez le code pour répondre aux besoins spécifiques de votre plugin.
-
----
-
-## Contribuer 🤝
+## Contribuer à BabyModel 🤝
 
 Si vous souhaitez contribuer à BabyModel, vous êtes les bienvenus ! Si vous trouvez des bugs, souhaitez proposer des améliorations, ou souhaitez ajouter des fonctionnalités supplémentaires, n'hésitez pas à ouvrir une **issue** ou à soumettre une **pull request**.
 
