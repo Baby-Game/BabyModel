@@ -1,11 +1,17 @@
 package fr.babystaff.babymodel.discord.bot;
 
+import fr.babystaff.babymodel.discord.bot.events.DiscordBotConnectEvent;
+import fr.babystaff.babymodel.discord.bot.events.DiscordBotDisconnectEvent;
+import fr.babystaff.babymodel.discord.bot.events.DiscordBotSendMessageToChannelEvent;
+import fr.babystaff.babymodel.discord.bot.events.DiscordBotSendPrivateMessageEvent;
+import fr.babystaff.babymodel.world.events.WorldCreateEvent;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import org.bukkit.Bukkit;
 
 import java.util.List;
 
@@ -23,6 +29,9 @@ public class DiscordBot {
                     .enableIntents(GatewayIntent.GUILD_MESSAGES)
                     .addEventListeners(this)
                     .build();
+
+            DiscordBotConnectEvent event = new DiscordBotConnectEvent(jda);
+            Bukkit.getPluginManager().callEvent(event);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -35,6 +44,8 @@ public class DiscordBot {
     public void disconnect() {
         if (jda != null) {
             jda.shutdownNow();
+            DiscordBotDisconnectEvent event = new DiscordBotDisconnectEvent(jda);
+            Bukkit.getPluginManager().callEvent(event);
         }
     }
 
@@ -43,6 +54,8 @@ public class DiscordBot {
             TextChannel channel = jda.getTextChannelById(channelId);
             if (channel != null) {
                 channel.sendMessage(message).queue();
+                DiscordBotSendMessageToChannelEvent event = new DiscordBotSendMessageToChannelEvent(getJDA(), channelId, message);
+                Bukkit.getPluginManager().callEvent(event);
             } else {
                 System.out.println("Salon introuvable.");
             }
@@ -63,6 +76,8 @@ public class DiscordBot {
             if (user != null) {
                 user.openPrivateChannel().queue(privateChannel -> {
                     privateChannel.sendMessage(message).queue();
+                    DiscordBotSendPrivateMessageEvent event = new DiscordBotSendPrivateMessageEvent(getJDA(), user, message);
+                    Bukkit.getPluginManager().callEvent(event);
                 });
             }
         }
