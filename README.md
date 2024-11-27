@@ -114,3 +114,44 @@ hologram.setLine(1, "Vous avez " + player.getCoins() + " pièces.");
 // Supprimer l'hologramme
 hologram.remove();
 ```
+
+### 4. World 🌍
+Le ``WorldManager`` permet de créer et de gérer des mondes dans Minecraft. Il facilite la création et suppression de monde.
+
+```JAVA
+ WorldManager worldManager = new WorldManager();
+        
+ // Créer un monde normal
+ World newWorld = worldManager.createWorld("MonNouveauMonde", WorldType.NORMAL);
+ if (newWorld != null) {
+    System.out.println("Le monde " + newWorld.getName() + " a été créé avec succès.");
+ }
+
+ // Supprimer un monde
+ boolean worldDeleted = worldManager.removeWorld("MonNouveauMonde");
+ if (worldDeleted) {
+    System.out.println("Le monde a été supprimé avec succès.");
+    } else {
+        System.out.println("La suppression du monde a échoué.");
+    }
+```
+
+### 5 DiscordBot 🤖
+Le ``DiscordBotManager`` permet de crée et de modifier des bot Discords pour les intégrers au fonctionnalités en jeu, des fonctionnalités de base son intégré de ``JDA``
+
+```JAVA
+BotManager botManager = new BotManager();
+        
+// Créer et connecter un bot
+DiscordBot myBot = new DiscordBot("bot_token");
+botManager.connectBot(myBot);
+        
+// Ajouter une commande
+CommandManager commandManager = new CommandManager();
+commandManager.addCommand("!hello", (message) -> {
+    System.out.println("Bonjour ! Commande exécutée.");
+});
+
+// Exécuter une commande
+commandManager.executeCommand("!hello");
+```
