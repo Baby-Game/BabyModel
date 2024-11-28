@@ -4,7 +4,6 @@ import fr.babystaff.babymodel.actionBar.ActionBarManager;
 import fr.babystaff.babymodel.dataBase.DataBaseManager;
 import fr.babystaff.babymodel.discord.bot.DiscordBotManager;
 import fr.babystaff.babymodel.hologram.HologramManager;
-import fr.babystaff.babymodel.world.World;
 import fr.babystaff.babymodel.world.WorldManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
