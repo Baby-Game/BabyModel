@@ -136,7 +136,7 @@ Le ``WorldManager`` permet de créer et de gérer des mondes dans Minecraft. Il 
     }
 ```
 
-### 5 DiscordBot 🤖
+### 5. DiscordBot 🤖
 Le ``DiscordBotManager`` permet de crée et de modifier des bot Discords pour les intégrers au fonctionnalités en jeu, des fonctionnalités de base son intégré de ``JDA``
 
 ```JAVA
@@ -154,4 +154,15 @@ commandManager.addCommand("!hello", (message) -> {
 
 // Exécuter une commande
 commandManager.executeCommand("!hello");
+```
+
+### 6. Arena 🌱
+Le ``ArenaManager`` permet de créer et gérer des arènes et des joueurs dans ces arènes et monde
+
+```JAVA
+ArenaManager arenaManager = new ArenaManager();
+
+Location location = new Location(Bukkit.getWorld("world"), 0.5, 100, 0.5);
+Arena arena = new Arena("Arena", Bukkit.getWorld("world"), location);
+arena.addPlayerInArena(player);
 ```
