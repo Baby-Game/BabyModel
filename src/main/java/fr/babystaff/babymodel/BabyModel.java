@@ -1,34 +1,33 @@
 package fr.babystaff.babymodel;
 
 import fr.babystaff.babymodel.actionBar.ActionBarManager;
+import fr.babystaff.babymodel.arena.ArenaManager;
 import fr.babystaff.babymodel.dataBase.DataBaseManager;
 import fr.babystaff.babymodel.discord.bot.DiscordBotManager;
 import fr.babystaff.babymodel.hologram.HologramManager;
+import fr.babystaff.babymodel.team.TeamManager;
 import fr.babystaff.babymodel.world.WorldManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class BabyModel extends JavaPlugin {
 
-    private DataBaseManager dataBaseManager;
-
-    private DiscordBotManager discordBotManager;
-    private WorldManager worldManager;
     private ActionBarManager actionBarManager;
+    private ArenaManager arenaManager;
+    private DataBaseManager dataBaseManager;
+    private DiscordBotManager discordBotManager;
     private HologramManager hologramManager;
+    private TeamManager teamManager;
+    private WorldManager worldManager;
 
     @Override
     public void onEnable() {
-
-        this.dataBaseManager = new DataBaseManager();
-
-        this.worldManager = new WorldManager();
-
         this.actionBarManager = new ActionBarManager();
-
-        this.hologramManager = new HologramManager();
-
+        this.arenaManager = new ArenaManager();
+        this.dataBaseManager = new DataBaseManager();
         this.discordBotManager = new DiscordBotManager();
-
+        this.hologramManager = new HologramManager();
+        this.teamManager = new TeamManager();
+        this.worldManager = new WorldManager();
     }
 
     @Override
@@ -40,19 +39,27 @@ public final class BabyModel extends JavaPlugin {
         return actionBarManager;
     }
 
-    public HologramManager getHologramManager() {
-        return hologramManager;
+    public ArenaManager getArenaManager() {
+        return arenaManager;
     }
 
     public DataBaseManager getDataBaseManager() {
         return dataBaseManager;
     }
 
-    public WorldManager getWorldManager() {
-        return worldManager;
-    }
-
     public DiscordBotManager getDiscordBotManager() {
         return discordBotManager;
+    }
+
+    public HologramManager getHologramManager() {
+        return hologramManager;
+    }
+
+    public TeamManager getTeamManager() {
+        return teamManager;
+    }
+
+    public WorldManager getWorldManager() {
+        return worldManager;
     }
 }
