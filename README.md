@@ -199,3 +199,20 @@ redTeam.clearTeam();
 // Vérifier l'état de l'équipe
 System.out.println("L'équipe est vide ? " + redTeam.getPlayers().isEmpty());
 ```
+
+### 8. Game 🎮
+Le ``GameManager`` permet de crée et de gérer des parties personnalisables, inclu la gestion de joueur et d'équipe
+
+```JAVA
+// Création d'une parti
+Game game = new Game("GameID", "Game Name", arena, location);
+
+GameManager gameManager = new GameManager();
+gameManager.createGame(game);
+
+// Ajout d'un joueur
+gameManager.addPlayer(player, game);
+
+// Suppression d'un joueur
+gameManager.removePlayer(player, game);
+```
