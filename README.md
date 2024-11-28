@@ -166,3 +166,36 @@ Location location = new Location(Bukkit.getWorld("world"), 0.5, 100, 0.5);
 Arena arena = new Arena("Arena", Bukkit.getWorld("world"), location);
 arena.addPlayerInArena(player);
 ```
+
+### 7. Team 🚩
+Le ``TeamManager`` est une class qui permet de crée et de géré des équipes et les joueurs que les teams contiennent, les équipes sont ranger par couleur pour permettre de gérer des ``Game``
+```JAVA
+// Création d'une équipe
+Team redTeam = new Team(ChatColor.RED, "red", "Red Team", 5);
+
+// Ajouter des joueurs (exemple avec des objets Player fictifs)
+Player player1 = /* récupérer un joueur */;
+Player player2 = /* récupérer un autre joueur */;
+
+if (redTeam.addPlayer(player1)) {
+    System.out.println(player1.getName() + " a rejoint l'équipe " + redTeam.getName());
+    } else {
+        System.out.println("Impossible d'ajouter " + player1.getName());
+    }
+
+    if (redTeam.addPlayer(player2)) {
+        System.out.println(player2.getName() + " a rejoint l'équipe " + redTeam.getName());
+    }
+
+// Afficher les informations de l'équipe
+System.out.println(redTeam);
+
+// Supprimer un joueur
+redTeam.removePlayer(player1);
+
+// Vider l'équipe
+redTeam.clearTeam();
+
+// Vérifier l'état de l'équipe
+System.out.println("L'équipe est vide ? " + redTeam.getPlayers().isEmpty());
+```
