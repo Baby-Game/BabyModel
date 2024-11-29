@@ -6,6 +6,11 @@ Cette API offre plusieurs gestionnaires qui vous permettent de gérer des foncti
 
 ---
 
+## [Wiki 📖](WIKI.md)
+Découvrez des exemples, des guides détaillés et la documentation complète dans le [Wiki](WIKI.md).
+
+---
+
 ### Maven 🔧
 
 Ajoutez la dépendance suivante dans votre fichier `pom.xml` :
@@ -46,5 +51,3 @@ Si vous souhaitez contribuer à BabyModel, vous êtes les bienvenus ! Si vous tr
 - Soumettez une pull request avec une description détaillée de votre modification.
 
 ---
-
-## [Wiki 📖](WIKI.md)
