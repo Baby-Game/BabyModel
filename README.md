@@ -286,3 +286,17 @@ NPC npc = new NPC(location, "Louis_292", skinTexute, skinSigniature, hologramMan
 // le supprime
 npc.delete();
 ```
+
+### 10. Langue 📨
+On peut égualement utiliser des messages traductions, des messages qui change en fonction de la 'langue' d'un joueur, grace à des messages garder dans des fichiers 'resources', tous ça grace à ``LanguageManager``
+
+```JAVA
+import fr.babystaff.babymodel.langue.LanguageManager;
+
+// initialisé Language Manager
+LanguageManager languageManager = new LanguageManager(getDataFolder());
+
+// Récupère le message tradui du joueur
+String translation = languageManager.translate(player, "your_key");
+player.sendMessage(translation);
+```
