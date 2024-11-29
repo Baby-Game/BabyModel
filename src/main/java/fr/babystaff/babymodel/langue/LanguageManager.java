@@ -2,6 +2,9 @@ package fr.babystaff.babymodel.langue;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import fr.babystaff.babymodel.hologram.events.HologramAddLineEvent;
+import fr.babystaff.babymodel.langue.events.PlayerLanguageChangeEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.io.File;
@@ -25,7 +28,10 @@ public class LanguageManager {
     }
 
     public void setPlayerLanguage(Player player, Language language) {
+        Language old = playerLanguageMap.get(player);
         playerLanguageMap.put(player, language);
+        PlayerLanguageChangeEvent event = new PlayerLanguageChangeEvent(player, language, old);
+        Bukkit.getPluginManager().callEvent(event);
     }
 
     public Language getPlayerLanguage(Player player) {
