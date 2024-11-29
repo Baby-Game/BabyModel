@@ -6,6 +6,7 @@ import fr.babystaff.babymodel.dataBase.DataBaseManager;
 import fr.babystaff.babymodel.discord.bot.DiscordBotManager;
 import fr.babystaff.babymodel.game.GameManager;
 import fr.babystaff.babymodel.hologram.HologramManager;
+import fr.babystaff.babymodel.npc.NPCManager;
 import fr.babystaff.babymodel.team.TeamManager;
 import fr.babystaff.babymodel.world.WorldManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,6 +19,7 @@ public final class BabyModel extends JavaPlugin {
     private DiscordBotManager discordBotManager;
     private GameManager gameManager;
     private HologramManager hologramManager;
+    private NPCManager npcManager;
     private TeamManager teamManager;
     private WorldManager worldManager;
 
@@ -29,6 +31,7 @@ public final class BabyModel extends JavaPlugin {
         this.discordBotManager = new DiscordBotManager();
         this.gameManager = new GameManager();
         this.hologramManager = new HologramManager();
+        this.npcManager = new NPCManager();
         this.teamManager = new TeamManager();
         this.worldManager = new WorldManager();
     }
@@ -68,5 +71,9 @@ public final class BabyModel extends JavaPlugin {
 
     public GameManager getGameManager() {
         return gameManager;
+    }
+
+    public NPCManager getNpcManager() {
+        return npcManager;
     }
 }
