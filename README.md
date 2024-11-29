@@ -204,15 +204,41 @@ System.out.println("L'équipe est vide ? " + redTeam.getPlayers().isEmpty());
 Le ``GameManager`` permet de crée et de gérer des parties personnalisables, inclu la gestion de joueur et d'équipe
 
 ```JAVA
+import fr.babystaff.babymodel.game.Game;
+import fr.babystaff.babymodel.game.GameManager;
+
 // Création d'une parti
 Game game = new Game("GameID", "Game Name", arena, location);
 
 GameManager gameManager = new GameManager();
-gameManager.createGame(game);
+gameManager.
+
+createGame(game);
 
 // Ajout d'un joueur
-gameManager.addPlayer(player, game);
+gameManager.
+
+addPlayer(player, game);
 
 // Suppression d'un joueur
-gameManager.removePlayer(player, game);
+gameManager.
+
+removePlayer(player, game);
+```
+
+### 9. NPC 🤖
+Il est aussi possible de crée des NPC et ```NPCManager```, il est possible de crée modifier et gérer des NPC dans le monde et leur ajouter des pratiques.
+
+```JAVA
+import fr.babystaff.babymodel.npc.NPC;
+import fr.babystaff.babymodel.npc.NPCManager;
+
+// initialisé NPC Manager
+NPCManager npcManager = new NPCManager();
+
+// crée le npc
+NPC npc = new NPC(location, "Louis_292", skinTexute, skinSigniature, hologramManager);
+
+// le supprime
+npc.delete();
 ```
