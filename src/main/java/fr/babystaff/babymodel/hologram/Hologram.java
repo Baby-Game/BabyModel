@@ -1,5 +1,6 @@
 package fr.babystaff.babymodel.hologram;
 
+import fr.babystaff.babymodel.armorStand.ArmorStand;
 import fr.babystaff.babymodel.hologram.events.HologramAddLineEvent;
 import fr.babystaff.babymodel.hologram.events.HologramCreateEvent;
 import fr.babystaff.babymodel.hologram.events.HologramDeleteEvent;
@@ -7,7 +8,6 @@ import fr.babystaff.babymodel.hologram.events.HologramRemoveLineEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 
 import java.util.ArrayList;
@@ -66,7 +66,7 @@ public class Hologram {
         for (int i = 0; i < armorStands.size(); i++) {
             ArmorStand armorStand = armorStands.get(i);
             Location newLocation = location.clone().add(0, i * 0.25, 0);
-            armorStand.teleport(newLocation);
+            armorStand.setPosition(newLocation);
         }
     }
 
@@ -86,11 +86,11 @@ public class Hologram {
         ArmorStand armorStand = (ArmorStand) world.spawnEntity(location, EntityType.ARMOR_STAND);
         armorStand.setVisible(false);
         armorStand.setGravity(false);
-        armorStand.setCustomName(text);
-        armorStand.setCustomNameVisible(true);
-        armorStand.setMarker(true);
-        armorStand.setBasePlate(false);
-        armorStand.setSmall(true);
+        armorStand.getArmorStand().setCustomName(text);
+        armorStand.getArmorStand().setCustomNameVisible(true);
+        armorStand.getArmorStand().setMarker(true);
+        armorStand.getArmorStand().setBasePlate(false);
+        armorStand.getArmorStand().setSmall(true);
         return armorStand;
     }
 
