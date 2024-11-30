@@ -6,7 +6,6 @@ import fr.babystaff.babymodel.dataBase.DataBaseManager;
 import fr.babystaff.babymodel.discord.bot.DiscordBotManager;
 import fr.babystaff.babymodel.game.GameManager;
 import fr.babystaff.babymodel.hologram.HologramManager;
-import fr.babystaff.babymodel.langue.Language;
 import fr.babystaff.babymodel.langue.LanguageManager;
 import fr.babystaff.babymodel.npc.NPCManager;
 import fr.babystaff.babymodel.team.TeamManager;

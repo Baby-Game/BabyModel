@@ -2,7 +2,6 @@ package fr.babystaff.babymodel.game;
 
 import fr.babystaff.babymodel.arena.Arena;
 import fr.babystaff.babymodel.game.events.GameCreateEvent;
-import fr.babystaff.babymodel.team.events.TeamRemoveEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -15,6 +14,7 @@ public class Game {
     private Arena arena;
     private Arena lobbyArena;
     private List<Player> playerList = new ArrayList<>();
+    private GameStatus gameStatus;
 
     public Game(String id, String name, Arena arena, Arena lobbyArena) {
         this.id = id;
@@ -24,6 +24,42 @@ public class Game {
 
         GameCreateEvent event = new GameCreateEvent(this);
         Bukkit.getPluginManager().callEvent(event);
+    }
+
+    public void start() {
+        if (!gameStatus.equals(GameStatus.LOBBY)) {
+            return;
+        }
+
+        for (Player p : playerList) {
+            p.teleport(arena.getSpawn());
+        }
+
+        setGameStatus(GameStatus.STARTING);
+    }
+
+    public void stop() {
+        if (!gameStatus.equals(GameStatus.RUNNING)) {
+            return;
+        }
+
+        for (Player p : playerList) {
+            p.teleport(lobbyArena.getSpawn());
+        }
+
+        setGameStatus(GameStatus.STOP);
+    }
+
+    public List<Player> getPlayerList() {
+        return playerList;
+    }
+
+    public GameStatus getGameStatus() {
+        return gameStatus;
+    }
+
+    public void setGameStatus(GameStatus gameStatus) {
+        this.gameStatus = gameStatus;
     }
 
     public void addPlayer(Player player) {
