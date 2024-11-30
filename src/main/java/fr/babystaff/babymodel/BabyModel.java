@@ -13,6 +13,8 @@ import fr.babystaff.babymodel.team.TeamManager;
 import fr.babystaff.babymodel.world.WorldManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+
 public final class BabyModel extends JavaPlugin {
 
     private ActionBarManager actionBarManager;
@@ -28,13 +30,16 @@ public final class BabyModel extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        String langFolderString = getDataFolder() + "/lang";
+        File langFolder = new File(langFolderString);
+
         this.actionBarManager = new ActionBarManager();
         this.arenaManager = new ArenaManager();
         this.dataBaseManager = new DataBaseManager();
         this.discordBotManager = new DiscordBotManager();
         this.gameManager = new GameManager();
         this.hologramManager = new HologramManager();
-        this.language = new LanguageManager(getDataFolder());
+        this.language = new LanguageManager(langFolder);
         this.npcManager = new NPCManager();
         this.teamManager = new TeamManager();
         this.worldManager = new WorldManager();

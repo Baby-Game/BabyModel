@@ -2,15 +2,13 @@ package fr.babystaff.babymodel.langue;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import fr.babystaff.babymodel.hologram.events.HologramAddLineEvent;
 import fr.babystaff.babymodel.langue.events.PlayerLanguageChangeEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +18,7 @@ public class LanguageManager {
     private final File translationFolder;
 
     public LanguageManager(File pluginFolder) {
-        this.translationFolder = new File(pluginFolder, "translations");
+        this.translationFolder = new File(pluginFolder, "");
         if (!translationFolder.exists()) {
             translationFolder.mkdirs();
         }
@@ -55,6 +53,10 @@ public class LanguageManager {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<String, String>>() {}.getType();
 
+        // Copier les fichiers de langue par défaut, si nécessaire
+        copyDefaultLangFiles();
+
+        // Charger les traductions depuis les fichiers JSON
         for (Language language : Language.values()) {
             File langFile = new File(translationFolder, language.getCode() + ".json");
             if (langFile.exists()) {
@@ -66,7 +68,30 @@ public class LanguageManager {
                     e.printStackTrace();
                 }
             } else {
-                System.out.println("Translation file not found for language: " + language.getCode());
+                System.out.println("Translation file not found for language: (" + language.getCode() + ") " + langFile.getPath());
+            }
+        }
+    }
+
+    private void copyDefaultLangFiles() {
+        for (Language language : Language.values()) {
+            String resourcePath = "/lang/" + language.getCode() + ".json";
+            File targetFile = new File(translationFolder, language.getCode() + ".json");
+
+            if (!targetFile.exists()) {
+                try (InputStream in = getClass().getResourceAsStream(resourcePath)) {
+                    if (in == null) {
+                        System.err.println("Resource not found: " + resourcePath);
+                        continue;
+                    }
+
+                    // Copier le fichier depuis les ressources vers le dossier des traductions
+                    Files.copy(in, targetFile.toPath());
+                    System.out.println("Copied default language file: " + targetFile.getPath());
+                } catch (IOException e) {
+                    System.err.println("Failed to copy language file: " + resourcePath);
+                    e.printStackTrace();
+                }
             }
         }
     }
