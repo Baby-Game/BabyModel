@@ -15,7 +15,13 @@
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>BabyModel</name>
+            <url>https://maven.pkg.github.com/Baby-Game/BabyModel</url>
+        </repository>
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>
@@ -110,6 +116,5 @@
             <artifactId>JDA</artifactId>
             <version>5.0.0-alpha.18</version>
         </dependency>
-
     </dependencies>
 </project>
