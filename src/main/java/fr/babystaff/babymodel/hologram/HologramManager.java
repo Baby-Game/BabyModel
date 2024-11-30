@@ -9,6 +9,10 @@ import java.util.*;
 public class HologramManager {
     private Map<String, Hologram> holograms = new HashMap<>();
 
+    public Map<String, Hologram> getHolograms() {
+        return holograms;
+    }
+
     // Méthode pour créer un hologramme
     public Hologram createHologram(Location location, String uuid) {
         Hologram hologram = new Hologram(location, uuid);

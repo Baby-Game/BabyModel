@@ -19,6 +19,10 @@ public class ActionBarManager {
         }
     }
 
+    public Map<Player, ActionBar> getActiveActionBars() {
+        return activeActionBars;
+    }
+
     public void removeActionBar(Player player) {
         activeActionBars.remove(player);
         ActionbarRemoveEvent event = new ActionbarRemoveEvent(player);

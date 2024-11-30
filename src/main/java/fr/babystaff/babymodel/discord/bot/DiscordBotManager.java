@@ -6,6 +6,10 @@ import java.util.Map;
 public class DiscordBotManager {
     private final Map<String, DiscordBot> discordBotHashMap = new HashMap<>();
 
+    public Map<String, DiscordBot> getDiscordBotHashMap() {
+        return discordBotHashMap;
+    }
+
     public void connectBot(DiscordBot discordBot) {
         if (discordBot == null) {
             return;

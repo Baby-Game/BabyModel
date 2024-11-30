@@ -17,6 +17,18 @@ public class LanguageManager {
     private final HashMap<Language, Map<String, String>> translations = new HashMap<>();
     private final File translationFolder;
 
+    public HashMap<Player, Language> getPlayerLanguageMap() {
+        return playerLanguageMap;
+    }
+
+    public HashMap<Language, Map<String, String>> getTranslations() {
+        return translations;
+    }
+
+    public File getTranslationFolder() {
+        return translationFolder;
+    }
+
     public LanguageManager(File pluginFolder) {
         this.translationFolder = new File(pluginFolder, "");
         if (!translationFolder.exists()) {

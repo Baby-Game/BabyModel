@@ -24,6 +24,14 @@ public class GameManager {
         }
     }
 
+    public HashMap<String, Game> getGameHashMap() {
+        return gameHashMap;
+    }
+
+    public HashMap<Player, Game> getPlayerGameHashMap() {
+        return playerGameHashMap;
+    }
+
     public void addPlayer(Player player, Game game) {
         if (!playerGameHashMap.containsKey(player)) {
             playerGameHashMap.put(player, game);

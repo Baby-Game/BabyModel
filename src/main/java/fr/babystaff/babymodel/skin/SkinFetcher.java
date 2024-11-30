@@ -27,6 +27,8 @@ public class SkinFetcher {
         return null;
     }
 
+
+
     private static JsonObject getPlayerProperties(String playerName) throws Exception {
         String uuidUrl = "https://api.mojang.com/users/profiles/minecraft/" + playerName;
         HttpURLConnection uuidConnection = (HttpURLConnection) new URL(uuidUrl).openConnection();

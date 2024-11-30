@@ -13,6 +13,10 @@ public class NPCManager {
         return true;
     }
 
+    public HashMap<String, NPC> getNpcHashMap() {
+        return npcHashMap;
+    }
+
     public boolean removeNPC(String npcName) {
         NPC npc = npcHashMap.remove(npcName);
         if (npc != null) {

@@ -15,6 +15,10 @@ public class WorldManager {
         }
     }
 
+    public HashMap<String, World> getWorldHashMap() {
+        return worldHashMap;
+    }
+
     public void removeWorld(World world) {
         if (worldHashMap.containsKey(world.getWorldName())) {
             worldHashMap.remove(world.getWorldName());

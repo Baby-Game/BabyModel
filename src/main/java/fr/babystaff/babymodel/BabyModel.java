@@ -46,7 +46,7 @@ public final class BabyModel extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        hologramManager.deleteAllHolograms();
     }
 
     public ActionBarManager getActionBarManager() {

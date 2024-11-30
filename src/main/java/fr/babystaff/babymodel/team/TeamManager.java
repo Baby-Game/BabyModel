@@ -8,6 +8,14 @@ public class TeamManager {
     private final HashMap<String, Team> teamHashMap = new HashMap<>();
     private final HashMap<Player, Team> playerTeamHashMap = new HashMap<>();
 
+    public HashMap<String, Team> getTeamHashMap() {
+        return teamHashMap;
+    }
+
+    public HashMap<Player, Team> getPlayerTeamHashMap() {
+        return playerTeamHashMap;
+    }
+
     public boolean createTeam(Team team) {
         if (teamHashMap.containsKey(team.getId())) {
             return false;

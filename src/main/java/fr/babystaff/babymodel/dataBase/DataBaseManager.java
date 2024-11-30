@@ -11,6 +11,10 @@ public class DataBaseManager {
 
     private final Map<String, DataBase> dataBaseHashMap = new HashMap<>();
 
+    public Map<String, DataBase> getDataBaseHashMap() {
+        return dataBaseHashMap;
+    }
+
     public void openConnectionDataBase(DataBase dataBase) {
         if (dataBase == null) {
             System.err.println("La base de données est nulle. Impossible d'ouvrir la connexion.");

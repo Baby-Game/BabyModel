@@ -13,6 +13,8 @@ public class ArmorStand {
         this.armorStand = world.spawn(location, org.bukkit.entity.ArmorStand.class);
     }
 
+
+
     public void setPosition(Location location) {
         armorStand.teleport(location);
     }

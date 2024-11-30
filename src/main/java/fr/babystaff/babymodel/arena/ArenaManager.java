@@ -22,6 +22,14 @@ public class ArenaManager {
         }
     }
 
+    public HashMap<String, Arena> getArenaHashMap() {
+        return arenaHashMap;
+    }
+
+    public HashMap<Player, Arena> getPlayerArenaHashMap() {
+        return playerArenaHashMap;
+    }
+
     public void createArena(Arena arena) {
         if (arenaHashMap.containsKey(arena.getId())) {
             return;
