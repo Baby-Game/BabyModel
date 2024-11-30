@@ -6,6 +6,7 @@ import fr.babystaff.babymodel.team.events.TeamCreateEvent;
 import fr.babystaff.babymodel.team.events.TeamRemoveEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -18,16 +19,30 @@ public class Team {
     private String name;
     private int maxPlayerPerTeam;
     private final List<Player> playerList = new ArrayList<>();
+    private Location spawn;
 
     // Constructeur
-    public Team(ChatColor chatColor, String id, String name, int maxPlayerPerTeam) {
+    public Team(ChatColor chatColor, String id, String name, int maxPlayerPerTeam, Location spawn) {
         this.chatColor = chatColor;
         this.id = id;
         this.name = name;
         this.maxPlayerPerTeam = maxPlayerPerTeam;
+        this.spawn = spawn;
 
         TeamCreateEvent event = new TeamCreateEvent(this);
         Bukkit.getPluginManager().callEvent(event);
+    }
+
+    public List<Player> getPlayerList() {
+        return playerList;
+    }
+
+    public void setSpawn(Location spawn) {
+        this.spawn = spawn;
+    }
+
+    public Location getSpawn() {
+        return spawn;
     }
 
     public boolean addPlayer(Player player) {
