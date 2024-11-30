@@ -8,6 +8,7 @@ import fr.babystaff.babymodel.game.GameManager;
 import fr.babystaff.babymodel.hologram.HologramManager;
 import fr.babystaff.babymodel.langue.LanguageManager;
 import fr.babystaff.babymodel.npc.NPCManager;
+import fr.babystaff.babymodel.skin.SkinFetcher;
 import fr.babystaff.babymodel.team.TeamManager;
 import fr.babystaff.babymodel.world.WorldManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,6 +25,7 @@ public final class BabyModel extends JavaPlugin {
     private HologramManager hologramManager;
     private LanguageManager language;
     private NPCManager npcManager;
+    private SkinFetcher skinFetcher;
     private TeamManager teamManager;
     private WorldManager worldManager;
 
@@ -40,6 +42,7 @@ public final class BabyModel extends JavaPlugin {
         this.hologramManager = new HologramManager();
         this.language = new LanguageManager(langFolder);
         this.npcManager = new NPCManager();
+        this.skinFetcher = new SkinFetcher();
         this.teamManager = new TeamManager();
         this.worldManager = new WorldManager();
     }
@@ -47,6 +50,10 @@ public final class BabyModel extends JavaPlugin {
     @Override
     public void onDisable() {
         hologramManager.deleteAllHolograms();
+    }
+
+    public SkinFetcher getSkinFetcher() {
+        return skinFetcher;
     }
 
     public ActionBarManager getActionBarManager() {
