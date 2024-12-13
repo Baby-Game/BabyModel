@@ -53,4 +53,12 @@ public class HologramManager {
     public void updateHologramNameForPlayer(ArmorStand armorStand, Player player, String name) {
         // Implémentez cette méthode selon vos besoins
     }
+
+    public void deleteHologram(String id) {
+        Hologram hologram = holograms.remove(id);
+        if (hologram != null) {
+            hologram.delete();
+        }
+    }
+
 }

@@ -27,6 +27,17 @@ public class Hologram {
         Bukkit.getPluginManager().callEvent(event);
     }
 
+    public List<String> getLines() {
+        List<String> lines = new ArrayList<>();
+        for (ArmorStand armorStand : armorStands) {
+            if (armorStand.getArmorStand().getCustomName() != null) {
+                lines.add(armorStand.getArmorStand().getCustomName());
+            }
+        }
+        return lines;
+    }
+
+
     // Retourne l'ID de l'hologramme
     public String getId() {
         return id;
