@@ -1,10 +1,5 @@
 package fr.babystaff.babymodel.redis;
 
-import fr.babystaff.babymodel.redis.events.RedisCloseEvent;
-import fr.babystaff.babymodel.redis.events.RedisConnectEvent;
-import fr.babystaff.babymodel.redis.events.RedisGetKeyEvent;
-import fr.babystaff.babymodel.redis.events.RedisSetKeyEvent;
-import org.bukkit.Bukkit;
 import redis.clients.jedis.Jedis;
 
 import java.util.HashMap;
@@ -23,6 +18,21 @@ public class RedisManager {
         return redis.getHost() + ":" + redis.getPort() + "/" + redis.getUser();
     }
 
+    public Jedis connect(Redis redis) {
+        if (redis == null) {
+            throw new IllegalArgumentException("Instance Redis non trouvée : " + redis.generateInstanceName());
+        }
+
+        if (!jedisConnections.containsKey(redis.generateInstanceName()) || !jedisConnections.get(redis.generateInstanceName()).isConnected()) {
+            Jedis jedis = redis.connect();
+            jedisConnections.put(redis.generateInstanceName(), jedis);
+            //RedisConnectEvent event = new RedisConnectEvent(jedis, redis);
+            //Bukkit.getPluginManager().callEvent(event);
+        }
+
+        return jedisConnections.get(redis.generateInstanceName());
+    }
+
     public Jedis connect(String instanceName) {
         Redis redis = redisHashMap.get(instanceName);
         if (redis == null) {
@@ -32,8 +42,6 @@ public class RedisManager {
         if (!jedisConnections.containsKey(instanceName) || !jedisConnections.get(instanceName).isConnected()) {
             Jedis jedis = redis.connect();
             jedisConnections.put(instanceName, jedis);
-            RedisConnectEvent event = new RedisConnectEvent(jedis, redis);
-            Bukkit.getPluginManager().callEvent(event);
         }
 
         return jedisConnections.get(instanceName);
@@ -44,8 +52,6 @@ public class RedisManager {
         if (jedis != null) {
             jedis.close();
             jedisConnections.remove(instanceName);
-            RedisCloseEvent event = new RedisCloseEvent(jedis);
-            Bukkit.getPluginManager().callEvent(event);
         }
     }
 
@@ -56,14 +62,10 @@ public class RedisManager {
     public void setKey(String instanceName, String key, String value) {
         Jedis jedis = getConnection(instanceName);
         jedis.set(key, value);
-        RedisSetKeyEvent event = new RedisSetKeyEvent(jedis, key, value);
-        Bukkit.getPluginManager().callEvent(event);
     }
 
     public String getKey(String instanceName, String key) {
         Jedis jedis = getConnection(instanceName);
-        RedisGetKeyEvent event = new RedisGetKeyEvent(jedis, key);
-        Bukkit.getPluginManager().callEvent(event);
         return jedis.get(key);
     }
 

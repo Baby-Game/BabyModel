@@ -16,6 +16,21 @@ public class Redis {
         this.password = password;
     }
 
+    public String generateInstanceName() {
+        return getHost() + ":" + getPort() + "/" + getUser();
+    }
+
+    public boolean isConnected() {
+        return jedis != null && jedis.isConnected();
+    }
+
+    public Jedis getJedis() {
+        if (jedis == null || !jedis.isConnected()) {
+            connect();
+        }
+        return jedis;
+    }
+
     public Jedis connect() {
         if (jedis == null || !jedis.isConnected()) {
             jedis = new Jedis(host, port);
@@ -34,6 +49,21 @@ public class Redis {
             return connect();
         }
         return jedis;
+    }
+
+    public void setKey(String key, String value) {
+        jedis.set(key, value);
+    }
+
+    public String getKey(String key) {
+        return jedis.get(key);
+    }
+
+    public void deleteKey(String key) {
+        if (jedis == null || !jedis.isConnected()) {
+            connect();
+        }
+        jedis.del(key);
     }
 
     public void close() {
