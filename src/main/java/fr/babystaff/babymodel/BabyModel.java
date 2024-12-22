@@ -8,6 +8,7 @@ import fr.babystaff.babymodel.game.GameManager;
 import fr.babystaff.babymodel.hologram.HologramManager;
 import fr.babystaff.babymodel.langue.LanguageManager;
 import fr.babystaff.babymodel.npc.NPCManager;
+import fr.babystaff.babymodel.redis.RedisManager;
 import fr.babystaff.babymodel.skin.SkinFetcher;
 import fr.babystaff.babymodel.team.TeamManager;
 import fr.babystaff.babymodel.world.WorldManager;
@@ -25,6 +26,7 @@ public final class BabyModel extends JavaPlugin {
     private HologramManager hologramManager;
     private LanguageManager language;
     private NPCManager npcManager;
+    private RedisManager redisManager;
     private SkinFetcher skinFetcher;
     private TeamManager teamManager;
     private WorldManager worldManager;
@@ -42,6 +44,7 @@ public final class BabyModel extends JavaPlugin {
         this.hologramManager = new HologramManager();
         this.language = new LanguageManager(langFolder);
         this.npcManager = new NPCManager();
+        this.redisManager = new RedisManager();
         this.skinFetcher = new SkinFetcher();
         this.teamManager = new TeamManager();
         this.worldManager = new WorldManager();
@@ -94,5 +97,9 @@ public final class BabyModel extends JavaPlugin {
 
     public LanguageManager getLanguage() {
         return language;
+    }
+
+    public RedisManager getRedisManager() {
+        return redisManager;
     }
 }

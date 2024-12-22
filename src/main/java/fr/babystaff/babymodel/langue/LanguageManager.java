@@ -45,7 +45,7 @@ public class LanguageManager {
     }
 
     public Language getPlayerLanguage(Player player) {
-        return playerLanguageMap.getOrDefault(player, Language.ENGLISH);
+        return playerLanguageMap.getOrDefault(player, Language.FRENCH);
     }
 
     public String translate(Player player, String key) {
