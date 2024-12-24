@@ -48,6 +48,16 @@ public final class BabyModel extends JavaPlugin {
         this.skinFetcher = new SkinFetcher();
         this.teamManager = new TeamManager();
         this.worldManager = new WorldManager();
+
+        String banner =
+                "BabyModel by BabyStaff, Louis_292 is enable\n  ____        _           __  __           _      _ \n"
+                        + " | __ )  __ _| |__  _   _|  \\/  | ___   __| | ___| |\n"
+                        + " |  _ \\ / _` | '_ \\| | | | |\\/| |/ _ \\ / _` |/ _ \\ |\n"
+                        + " | |_) | (_| | |_) | |_| | |  | | (_) | (_| |  __/ |\n"
+                        + " |____/ \\__,_|_.__/ \\__, |_|  |_|\\___/ \\__,_|\\___|_|\n"
+                        + "                    |___/                            \n";
+
+        getLogger().info(banner);
     }
 
     @Override
