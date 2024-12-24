@@ -1,4 +1,6 @@
 {
   "welcome": "Bienvenue sur le serveur",
-  "exit": "Vous avez quitter une partie"
+  "exit": "Vous avez quitter une partie",
+
+  "BabyModelGame-Bungee.JoinMessageMotd": "Vous avez rejoint le serveur NAME, IP"
 }
