@@ -1,3 +1,0 @@
-name: BabyModel-Bungee
-version: '${project.version}'
-main: fr.babystaff.babymodelbungee.BabyModel

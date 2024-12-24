@@ -1,9 +1,0 @@
-{
-  "welcome": "Bienvenue sur le serveur",
-  "exit": "Vous avez quitter une partie",
-
-  "babyGameModel.LanguageJoinEvent.JoinMessage": "Votre langue à était mis sur : ",
-  "babyGameModel.VanishManager.VanishActiveMessage": "Vous êtes en mode invisible !",
-  "babyGameModel.VanishManager.VanishDisableMessage": "Vous n'êtes plus en mode invisible !",
-  "babyGameModel.PlayerListGui.GuiName": "Liste des joueurs"
-}
