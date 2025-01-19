@@ -2,5 +2,7 @@
   "welcome": "Bienvenue sur le serveur",
   "exit": "Vous avez quitter une partie",
 
-  "BabyModelGame-Bungee.JoinMessageMotd": "Vous avez rejoint le serveur NAME, IP"
+  "BabyModelGame-Bungee.JoinMessageMotd": "Vous avez rejoint le serveur NAME, IP",
+
+  "permission.error": "Vous n'avez pas la permission de faire ceci"
 }

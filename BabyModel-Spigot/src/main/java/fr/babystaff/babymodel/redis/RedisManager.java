@@ -20,7 +20,7 @@ public class RedisManager {
 
     public Jedis connect(Redis redis) {
         if (redis == null) {
-            throw new IllegalArgumentException("Instance Redis non trouvée : " + redis.generateInstanceName());
+            throw new IllegalArgumentException("[BabyModel] Instance Redis non trouvée : " + redis.generateInstanceName());
         }
 
         if (!jedisConnections.containsKey(redis.generateInstanceName()) || !jedisConnections.get(redis.generateInstanceName()).isConnected()) {
@@ -36,7 +36,7 @@ public class RedisManager {
     public Jedis connect(String instanceName) {
         Redis redis = redisHashMap.get(instanceName);
         if (redis == null) {
-            throw new IllegalArgumentException("Instance Redis non trouvée : " + instanceName);
+            throw new IllegalArgumentException("[BabyModel] Instance Redis non trouvée : " + instanceName);
         }
 
         if (!jedisConnections.containsKey(instanceName) || !jedisConnections.get(instanceName).isConnected()) {

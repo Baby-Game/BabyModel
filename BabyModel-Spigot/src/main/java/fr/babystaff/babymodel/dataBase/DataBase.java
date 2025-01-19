@@ -1,5 +1,7 @@
 package fr.babystaff.babymodel.dataBase;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import fr.babystaff.babymodel.dataBase.events.DataBaseCloseEvent;
 import fr.babystaff.babymodel.dataBase.events.DataBaseConnectEvent;
 import org.bukkit.Bukkit;
@@ -9,13 +11,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DataBase {
-    private DatabaseType databaseType;
-    private String host;
-    private String port;
-    private String user;
-    private String pass;
-    private String name;
+    private final DatabaseType databaseType;
+    private final String host;
+    private final String port;
+    private final String user;
+    private final String pass;
+    private final String name;
     private Connection connection;
+
+    private HikariDataSource dataSource;
 
     public DataBase(DatabaseType databaseType, String host, String port, String user, String pass, String name) {
         this.databaseType = databaseType;
@@ -27,57 +31,39 @@ public class DataBase {
     }
 
     public String toURL() {
-        final StringBuilder sb = new StringBuilder();
-
-        sb.append(databaseType.getDriver())
-                .append(getHost())
-                .append(":")
-                .append(getPort())
-                .append("/")
-                .append(getName())
-                .append("?user=")
-                .append(getUser())
-                .append("&password=")
-                .append(getPass());
-
-        return sb.toString();
+        return String.format("%s%s:%s/%s?user=%s&password=%s",
+                databaseType.getDriver(), host, port, name, user, pass);
     }
 
     public void connect() {
-        try {
-            Class.forName(databaseType.getDriver_class());
-            this.connection = DriverManager.getConnection(toURL());
-            DataBaseConnectEvent event = new DataBaseConnectEvent(getName());
-            Bukkit.getPluginManager().callEvent(event);
+        long startTime = System.currentTimeMillis();
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(toURL());
+        config.setUsername(user);
+        config.setPassword(pass);
+        config.setDriverClassName(getDatabaseType().getDriver_class());
+        config.addDataSourceProperty("cachePrepStmts", "true");
+        config.addDataSourceProperty("prepStmtCacheSize", "250");
+        config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
 
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        long endTime = System.currentTimeMillis();
+        long duration = endTime - startTime;
+
+        System.out.println("[BabyModel] Connexion à la base de données " + getName() + " ouverte en " + duration + " ms.");
+        this.dataSource = new HikariDataSource(config);
     }
 
     public void close() {
-        try {
-            if (this.connection != null) {
-                if (!this.connection.isClosed()) {
-                    this.connection.close();
-                    DataBaseCloseEvent event = new DataBaseCloseEvent(getName());
-                    Bukkit.getPluginManager().callEvent(event);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (dataSource != null) {
+            dataSource.close();
         }
     }
 
+
     public Connection getConnection() throws SQLException {
-        if (this.connection != null) {
-            if (!this.connection.isClosed()) {
-                return this.connection;
-            }
-        }
-        connect();
-        return this.connection;
+        return dataSource.getConnection();
     }
+
 
     public String getHost() {
         return host;

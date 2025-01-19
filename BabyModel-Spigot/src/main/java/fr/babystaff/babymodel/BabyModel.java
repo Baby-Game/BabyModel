@@ -1,5 +1,7 @@
 package fr.babystaff.babymodel;
 
+import fr.babystaff.babymodel.ServerManager.ServerManager;
+import fr.babystaff.babymodel.ServerManager.ServerStatus;
 import fr.babystaff.babymodel.actionBar.ActionBarManager;
 import fr.babystaff.babymodel.arena.ArenaManager;
 import fr.babystaff.babymodel.dataBase.DataBaseManager;
@@ -27,12 +29,15 @@ public final class BabyModel extends JavaPlugin {
     private LanguageManager language;
     private NPCManager npcManager;
     private RedisManager redisManager;
+    private ServerManager serverManager;
     private SkinFetcher skinFetcher;
     private TeamManager teamManager;
     private WorldManager worldManager;
 
     @Override
     public void onEnable() {
+        this.serverManager = new ServerManager();
+
         String langFolderString = getDataFolder() + "/lang";
         File langFolder = new File(langFolderString);
 
@@ -58,11 +63,17 @@ public final class BabyModel extends JavaPlugin {
                         + "                    |___/                            \n";
 
         getLogger().info(banner);
+
+        serverManager.setServerStatus(ServerStatus.START);
     }
 
     @Override
     public void onDisable() {
+        serverManager.setServerStatus(ServerStatus.STOPPING);
+
         hologramManager.deleteAllHolograms();
+
+        serverManager.setServerStatus(ServerStatus.STOP);
     }
 
     public SkinFetcher getSkinFetcher() {
@@ -111,5 +122,9 @@ public final class BabyModel extends JavaPlugin {
 
     public RedisManager getRedisManager() {
         return redisManager;
+    }
+
+    public ServerManager getServerManager() {
+        return serverManager;
     }
 }
