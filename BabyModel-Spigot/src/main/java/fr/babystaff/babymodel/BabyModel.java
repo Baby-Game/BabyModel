@@ -1,5 +1,6 @@
 package fr.babystaff.babymodel;
 
+import fr.babystaff.babymodel.InventoryManager.InventoryClickEventOnVoidItem;
 import fr.babystaff.babymodel.ServerManager.ServerManager;
 import fr.babystaff.babymodel.ServerManager.ServerStatus;
 import fr.babystaff.babymodel.actionBar.ActionBarManager;
@@ -53,6 +54,9 @@ public final class BabyModel extends JavaPlugin {
         this.skinFetcher = new SkinFetcher();
         this.teamManager = new TeamManager();
         this.worldManager = new WorldManager();
+
+        // inventory event
+        getServer().getPluginManager().registerEvents(new InventoryClickEventOnVoidItem(), this);
 
         String banner =
                 "BabyModel by BabyStaff, Louis_292 is enable\n  ____        _           __  __           _      _ \n"
