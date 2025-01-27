@@ -1,6 +1,7 @@
 package fr.babystaff.babymodel;
 
 import fr.babystaff.babymodel.InventoryManager.InventoryClickEventOnVoidItem;
+import fr.babystaff.babymodel.NametagNMS.NametagNMS;
 import fr.babystaff.babymodel.ServerManager.ServerManager;
 import fr.babystaff.babymodel.ServerManager.ServerStatus;
 import fr.babystaff.babymodel.actionBar.ActionBarManager;
@@ -28,6 +29,7 @@ public final class BabyModel extends JavaPlugin {
     private GameManager gameManager;
     private HologramManager hologramManager;
     private LanguageManager language;
+    private NametagNMS nametagNMS;
     private NPCManager npcManager;
     private RedisManager redisManager;
     private ServerManager serverManager;
@@ -49,6 +51,7 @@ public final class BabyModel extends JavaPlugin {
         this.gameManager = new GameManager();
         this.hologramManager = new HologramManager();
         this.language = new LanguageManager(langFolder);
+        this.nametagNMS = new NametagNMS();
         this.npcManager = new NPCManager();
         this.redisManager = new RedisManager();
         this.skinFetcher = new SkinFetcher();
@@ -130,5 +133,9 @@ public final class BabyModel extends JavaPlugin {
 
     public ServerManager getServerManager() {
         return serverManager;
+    }
+
+    public NametagNMS getNametagNMS() {
+        return nametagNMS;
     }
 }
