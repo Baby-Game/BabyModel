@@ -2,12 +2,8 @@ package fr.babystaff.babymodel.dataBase;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import fr.babystaff.babymodel.dataBase.events.DataBaseCloseEvent;
-import fr.babystaff.babymodel.dataBase.events.DataBaseConnectEvent;
-import org.bukkit.Bukkit;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.Connection; 
 import java.sql.SQLException;
 
 public class DataBase {

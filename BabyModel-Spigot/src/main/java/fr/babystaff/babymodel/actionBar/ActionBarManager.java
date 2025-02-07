@@ -1,54 +1,78 @@
 package fr.babystaff.babymodel.actionBar;
 
-import fr.babystaff.babymodel.actionBar.events.ActionbarRemoveEvent;
-import org.bukkit.Bukkit;
+import fr.babystaff.babymodel.BabyModel;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ActionBarManager {
-    private final Map<Player, ActionBar> activeActionBars = new HashMap<>();
+    private final List<Player> activeActionBar = new ArrayList<>();
+    private final Map<Player, String> actionBarMap = new HashMap<>();
 
-    public void addActionBar(Player player, String content) {
-        if (activeActionBars.containsKey(player)) {
-            updateActionBar(player, content);
+    private final BabyModel babyModel;
+
+    public ActionBarManager(BabyModel babyModel) {
+        this.babyModel = babyModel;
+    }
+
+    public void fillActionBar(Player player, String text) {
+        actionBarMap.put(player, text);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (actionBarMap.containsKey(player)) {
+                    sendActionBar(player, text);
+                } else {
+                    this.cancel();
+                }
+            }
+        }.runTaskTimer(babyModel, 0L, 20L);
+    }
+
+    public void fillActionBar(Player player) {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (actionBarMap.containsKey(player)) {
+                    sendActionBar(player, actionBarMap.get(player));
+                } else {
+                    this.cancel();
+                }
+            }
+        }.runTaskTimer(babyModel, 0L, 20L);
+    }
+
+    public void stopFillActionBar(Player player) {
+        actionBarMap.remove(player);
+    }
+
+    public void updateFillActionBar(Player player, String text) {
+        if (actionBarMap.containsKey(player)) {
+            actionBarMap.remove(player);
+            actionBarMap.put(player, text);
         } else {
-            ActionBar actionBar = new ActionBar(player, content);
-            activeActionBars.put(player, actionBar);
+            actionBarMap.put(player, text);
         }
     }
 
-    public Map<Player, ActionBar> getActiveActionBars() {
-        return activeActionBars;
+    public void sendActionBar(Player player, String text) {
+        ActionBar actionBar = new ActionBar(player, text);
+        actionBar.sendActionBar();
     }
 
-    public void removeActionBar(Player player) {
-        activeActionBars.remove(player);
-        ActionbarRemoveEvent event = new ActionbarRemoveEvent(player);
-        Bukkit.getPluginManager().callEvent(event);
+    public Map<Player, String> getActionBarMap() {
+        return actionBarMap;
     }
 
-    public void updateActionBar(Player player, String newContent) {
-        ActionBar actionBar = activeActionBars.get(player);
-        if (actionBar != null) {
-            actionBar.setContent(newContent);
-        } else {
-            addActionBar(player, newContent);
-        }
+    public List<Player> getActiveActionBar() {
+        return activeActionBar;
     }
 
-    public boolean hasActionBar(Player player) {
-        return activeActionBars.containsKey(player);
-    }
-
-    public void sendActionBars() {
-        for (ActionBar actionBar : activeActionBars.values()) {
-            actionBar.send();
-        }
-    }
-
-    public void startAutoFillTask(long intervalTicks) {
-        Bukkit.getScheduler().runTaskTimerAsynchronously(Bukkit.getPluginManager().getPlugin("BabyModel"), this::sendActionBars, 0, intervalTicks);
+    public BabyModel getBabyModel() {
+        return babyModel;
     }
 }

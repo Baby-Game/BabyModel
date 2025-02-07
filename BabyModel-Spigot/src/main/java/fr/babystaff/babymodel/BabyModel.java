@@ -44,7 +44,7 @@ public final class BabyModel extends JavaPlugin {
         String langFolderString = getDataFolder() + "/lang";
         File langFolder = new File(langFolderString);
 
-        this.actionBarManager = new ActionBarManager();
+        this.actionBarManager = new ActionBarManager(this);
         this.arenaManager = new ArenaManager();
         this.dataBaseManager = new DataBaseManager();
         this.discordBotManager = new DiscordBotManager();
