@@ -13,6 +13,7 @@
     <modules>
         <module>BabyModel-Spigot</module>
         <module>BabyModel-Bungee</module>
+        <module>BabyModel-Velocity</module>
     </modules>
 
     <properties>
