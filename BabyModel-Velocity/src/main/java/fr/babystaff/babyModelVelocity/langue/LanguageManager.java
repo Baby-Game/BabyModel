@@ -8,6 +8,7 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
+import org.slf4j.Logger;
 
 public class LanguageManager {
     private final HashMap<Player, String> playerLanguageMap = new HashMap<>(); // Utilisation de String pour le code de la langue
@@ -26,7 +27,10 @@ public class LanguageManager {
         return translationFolder;
     }
 
-    public LanguageManager(File pluginFolder) {
+    private Logger logger;
+
+    public LanguageManager(Logger logger, File pluginFolder) {
+        this.logger = logger;
         this.translationFolder = new File(pluginFolder, "");
         if (!translationFolder.exists()) {
             translationFolder.mkdirs();
@@ -80,11 +84,11 @@ public class LanguageManager {
                     Map<String, String> langMap = gson.fromJson(reader, type);
                     translations.put(languageCode, langMap); // Utilisation du code de la langue
                 } catch (IOException e) {
-                    System.err.println("Failed to load translation file: " + langFile.getName());
+                    getLogger().error("Failed to load translation file: " + langFile.getName());
                     e.printStackTrace();
                 }
             } else {
-                System.out.println("Translation file not found for language: (" + languageCode + ") " + langFile.getPath());
+                getLogger().info("Translation file not found for language: (" + languageCode + ") " + langFile.getPath());
             }
         }
     }
@@ -100,7 +104,7 @@ public class LanguageManager {
 
             try (InputStream in = getClass().getResourceAsStream(resourcePath)) {
                 if (in == null) {
-                    System.err.println("Resource not found: " + resourcePath);
+                    getLogger().error("Resource not found: " + resourcePath);
                     continue;
                 }
 
@@ -113,7 +117,7 @@ public class LanguageManager {
                     try (FileReader reader = new FileReader(targetFile)) {
                         existingTranslations = gson.fromJson(reader, type);
                     } catch (IOException e) {
-                        System.err.println("Failed to read existing translation file: " + targetFile.getName());
+                        getLogger().error("Failed to read existing translation file: " + targetFile.getName());
                         e.printStackTrace();
                     }
                 }
@@ -127,16 +131,19 @@ public class LanguageManager {
                 // Écrire les traductions mises à jour dans le fichier
                 try (FileWriter writer = new FileWriter(targetFile)) {
                     gson.toJson(existingTranslations, writer);
-                    System.out.println("Updated language file: " + targetFile.getPath());
+                    getLogger().info("Updated language file: " + targetFile.getPath());
                 } catch (IOException e) {
-                    System.err.println("Failed to write updated translation file: " + targetFile.getName());
+                    getLogger().error("Failed to write updated translation file: " + targetFile.getName());
                     e.printStackTrace();
                 }
             } catch (IOException e) {
-                System.err.println("Failed to process language file: " + resourcePath);
+                getLogger().error("Failed to process language file: " + resourcePath);
                 e.printStackTrace();
             }
         }
     }
 
+    public Logger getLogger() {
+        return logger;
+    }
 }

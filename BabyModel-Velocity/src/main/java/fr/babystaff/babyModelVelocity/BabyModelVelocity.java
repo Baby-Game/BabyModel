@@ -51,7 +51,7 @@ public class BabyModelVelocity {
         this.discordBotManager = new DiscordBotManager();
 
         // languageManager load
-        this.languageManager = new LanguageManager(langFolder);
+        this.languageManager = new LanguageManager(getLogger(), langFolder);
 
         // redisManager load
         this.redisManager = new RedisManager();
