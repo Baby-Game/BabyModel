@@ -1,0 +1,14 @@
+{
+  "id": "babymodel-velocity",
+  "name": "BabyModel-Velocity",
+  "version": "1.0.0",
+  "main": "fr.babystaff.babyModelVelocity",
+  "authors": ["BabyStaff, Louis_292"],
+  "description": "Un plugin Velocity pour BabyModel",
+  "dependencies": [
+    {
+      "id": "luckperms",
+      "optional": true
+    }
+  ]
+}
