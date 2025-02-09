@@ -12,6 +12,7 @@ import fr.babystaff.babymodel.game.GameManager;
 import fr.babystaff.babymodel.hologram.HologramManager;
 import fr.babystaff.babymodel.langue.LanguageManager;
 import fr.babystaff.babymodel.npc.NPCManager;
+import fr.babystaff.babymodel.playerUtils.PlayerUtils;
 import fr.babystaff.babymodel.redis.RedisManager;
 import fr.babystaff.babymodel.skin.SkinFetcher;
 import fr.babystaff.babymodel.team.TeamManager;
@@ -36,6 +37,7 @@ public final class BabyModel extends JavaPlugin {
     private SkinFetcher skinFetcher;
     private TeamManager teamManager;
     private WorldManager worldManager;
+    private PlayerUtils playerUtils;
 
     @Override
     public void onEnable() {
@@ -57,6 +59,7 @@ public final class BabyModel extends JavaPlugin {
         this.skinFetcher = new SkinFetcher();
         this.teamManager = new TeamManager();
         this.worldManager = new WorldManager();
+        this.playerUtils = new PlayerUtils();
 
         // inventory event
         getServer().getPluginManager().registerEvents(new InventoryClickEventOnVoidItem(), this);
@@ -137,5 +140,9 @@ public final class BabyModel extends JavaPlugin {
 
     public NametagNMS getNametagNMS() {
         return nametagNMS;
+    }
+
+    public PlayerUtils getPlayerUtils() {
+        return playerUtils;
     }
 }
