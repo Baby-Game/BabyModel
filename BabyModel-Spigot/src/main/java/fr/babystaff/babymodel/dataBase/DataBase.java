@@ -1,9 +1,7 @@
 package fr.babystaff.babymodel.dataBase;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
-
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DataBase {
@@ -15,8 +13,6 @@ public class DataBase {
     private final String name;
     private Connection connection;
 
-    private HikariDataSource dataSource;
-
     public DataBase(DatabaseType databaseType, String host, String port, String user, String pass, String name) {
         this.databaseType = databaseType;
         this.host = host;
@@ -27,39 +23,52 @@ public class DataBase {
     }
 
     public String toURL() {
-        return String.format("%s%s:%s/%s?user=%s&password=%s",
-                databaseType.getDriver(), host, port, name, user, pass);
+        return String.format("%s%s:%s/%s",
+                databaseType.getDriver(), host, port, name);
     }
 
     public void connect() {
         long startTime = System.currentTimeMillis();
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl(toURL());
-        config.setUsername(user);
-        config.setPassword(pass);
-        config.setDriverClassName(getDatabaseType().getDriver_class());
-        config.addDataSourceProperty("cachePrepStmts", "true");
-        config.addDataSourceProperty("prepStmtCacheSize", "250");
-        config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+
+        try {
+            // Vérifie si le driver est bien disponible
+            System.out.println("Chargement du driver : " + databaseType.getDriver_class());
+            Class.forName(databaseType.getDriver_class());
+            System.out.println("Driver chargé avec succès !");
+
+            // Connexion à la base de données
+            connection = DriverManager.getConnection(toURL(), user, pass);
+            System.out.println("[BabyModel] Connexion réussie à la base de données " + name);
+
+        } catch (ClassNotFoundException e) {
+            System.err.println("Erreur : Driver JDBC introuvable !");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la connexion à la base de données !");
+            e.printStackTrace();
+        }
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
 
-        System.out.println("[BabyModel] Connexion à la base de données " + getName() + " ouverte en " + duration + " ms.");
-        this.dataSource = new HikariDataSource(config);
+        System.out.println("[BabyModel] Connexion à la base de données " + name + " ouverte en " + duration + " ms.");
     }
 
     public void close() {
-        if (dataSource != null) {
-            dataSource.close();
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+                System.out.println("[BabyModel] Connexion à la base de données fermée.");
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la fermeture de la connexion !");
+            e.printStackTrace();
         }
     }
 
-
-    public Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
+    public Connection getConnection() {
+        return connection;
     }
-
 
     public String getHost() {
         return host;

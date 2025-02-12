@@ -23,11 +23,7 @@ public class DataBaseManager {
 
         synchronized (dataBaseHashMap) {
             if (!dataBaseHashMap.containsKey(dataBase.getName())) {
-                long startTime = System.currentTimeMillis();
                 dataBase.connect();
-                long endTime = System.currentTimeMillis();
-
-                System.out.println("[BabyModel] Connexion à la base de données " + dataBase.getName() + " ouverte en " + (endTime - startTime) + " ms.");
                 dataBaseHashMap.put(dataBase.getName(), dataBase);
             } else {
                 System.err.println("[BabyModel] La connexion à la base de données " + dataBase.getName() + " est déjà ouverte.");

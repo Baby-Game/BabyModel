@@ -1,7 +1,7 @@
 package fr.babystaff.babymodel.dataBase;
 
 public enum DatabaseType {
-    MYSQL("jdbc:mysql://", "org.mysql.jdbc.Driver"),
+    MYSQL("jdbc:mysql://", "com.mysql.cj.jdbc.Driver"),
     MARIADB("jdbc:mariadb://", "org.mariadb.jdbc.Driver");
 
     private final String driver;
