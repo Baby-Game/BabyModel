@@ -41,6 +41,8 @@ public final class BabyModel extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        long startTime = System.currentTimeMillis();
+
         this.serverManager = new ServerManager();
 
         String langFolderString = getDataFolder() + "/lang";
@@ -64,8 +66,15 @@ public final class BabyModel extends JavaPlugin {
         // inventory event
         getServer().getPluginManager().registerEvents(new InventoryClickEventOnVoidItem(), this);
 
+        serverManager.setServerStatus(ServerStatus.START);
+
+        long endTime = System.currentTimeMillis();
+        long durationMs = endTime - startTime;
+        double durationSeconds = durationMs / 1000.0;
+
+
         String banner =
-                "BabyModel by BabyStaff, Louis_292 is enable\n  ____        _           __  __           _      _ \n"
+                "BabyModel by BabyStaff, Louis_292 is enable (" + durationSeconds +  "s)\n  ____        _           __  __           _      _ \n"
                         + " | __ )  __ _| |__  _   _|  \\/  | ___   __| | ___| |\n"
                         + " |  _ \\ / _` | '_ \\| | | | |\\/| |/ _ \\ / _` |/ _ \\ |\n"
                         + " | |_) | (_| | |_) | |_| | |  | | (_) | (_| |  __/ |\n"
@@ -73,8 +82,6 @@ public final class BabyModel extends JavaPlugin {
                         + "                    |___/                            \n";
 
         getLogger().info(banner);
-
-        serverManager.setServerStatus(ServerStatus.START);
     }
 
     @Override
